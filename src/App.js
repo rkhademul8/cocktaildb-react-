@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home/Home';
@@ -7,12 +6,16 @@ import {
   BrowserRouter as Router,Switch,Route } from "react-router-dom";
 import About from './components/About/About';
 import Login from './components/Login/Login';
+import AuthProvider from './context/AuthProvider';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import CocktaiDetails from './components/CocktaiDetails/CocktaiDetails';
 
 function App() {
   return (
-    <div >
+    <div className="App">
     
-    <Router>
+   <AuthProvider>
+   <Router>
     <Header></Header>
       <Switch>
         
@@ -24,9 +27,19 @@ function App() {
         <Home></Home>
       </Route>
 
+      <PrivateRoute path={'/drinkdetail/:drinkid'}>
+        <CocktaiDetails></CocktaiDetails>
+      </PrivateRoute>
+
       <Route path={'/about'}>
-        <About></About>
+
+      <About></About>
+
       </Route>
+
+      {/* <Route path={'/about'}>
+        <About></About>
+      </Route> */}
 
       <Route path={'/login'}>
       <Login></Login>
@@ -34,6 +47,7 @@ function App() {
 
       </Switch>
     </Router>
+   </AuthProvider>
      
     </div>
   );

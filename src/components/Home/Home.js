@@ -87,7 +87,7 @@ const Home = () => {
 
                 {/*  serach  */}
                 <Container>
-                <div class="mb-3">
+                <div className="mb-3">
                 <input 
                 onChange={searchHandle}
                 type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search you favourite drink" />

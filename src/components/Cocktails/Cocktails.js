@@ -1,8 +1,10 @@
 import React from 'react';
-import { Card, Col } from 'react-bootstrap';
+import { Button, Card, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 const Cocktails = (props) => {
-    const {strCategory,strDrinkThumb,strInstructions}=props.cocktail
+  console.log(props.cocktail);
+    const {idDrink,strCategory,strDrinkThumb,strInstructions}=props.cocktail
     return (
         <div>
     <Col>
@@ -14,6 +16,7 @@ const Cocktails = (props) => {
             {strInstructions.slice(0,100)}
           </Card.Text>
         </Card.Body>
+        <Link to={`/drinkdetail/${idDrink}`}> <Button variant="danger">More Details</Button>  </Link>
       </Card>
     </Col>
         </div>
