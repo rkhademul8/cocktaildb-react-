@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Carousel, Container, Row } from 'react-bootstrap';
+import { Carousel, Container, Row,Spinner } from 'react-bootstrap';
 import Cocktails from '../Cocktails/Cocktails';
 import './Home.css'
 
@@ -9,14 +9,35 @@ import img3 from '../../images/m4.jpg'
 
 const Home = () => {
 
+    //  load data from api
     const[cocktails, setCocktail]=useState([])
+    
 
     useEffect(()=>{
         fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita')
         .then(res=>res.json())
-        .then(data=>setCocktail(data.drinks))
+        .then(data=>{
+            
+            setCocktail(data.drinks)})
     },[])
 
+
+    // search handle 
+    const searchHandle=(e)=>{
+        const searcText=e.target.value
+        setSearch(searcText)
+       
+    }
+
+    const[search, setSearch]=useState('') 
+    useEffect(()=>{
+        const url=`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${search}`
+        fetch(url)
+        .then(res=>res.json())
+        .then(data=>setCocktail(data.drinks))
+    },[search])
+
+    
     return (
         <div>
 
@@ -64,8 +85,19 @@ const Home = () => {
                         </Carousel>
                 </Container>
 
+                {/*  serach  */}
+                <Container>
+                <div class="mb-3">
+                <input 
+                onChange={searchHandle}
+                type="email" className="form-control" id="exampleFormControlInput1" placeholder="Search you favourite drink" />
+                </div>
+                </Container>
+
                 {/* cocktail map from api */}
             <Container>
+
+            {cocktails.length===0 ? <Spinner animation="border" /> : 
                 <Row xs={1} md={3} className="g-4">
                     {
                         cocktails.map(cocktail=> <Cocktails
@@ -74,6 +106,7 @@ const Home = () => {
                         ></Cocktails>)
                     }
                 </Row>
+                }
             </Container>
            
         </div>

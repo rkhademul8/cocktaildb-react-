@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 
 const Cocktails = (props) => {
-    console.log(props.cocktail);
     const {strCategory,strDrinkThumb,strInstructions}=props.cocktail
     return (
         <div>
