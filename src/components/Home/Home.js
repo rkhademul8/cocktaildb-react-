@@ -95,9 +95,9 @@ const Home = () => {
                 </Container>
 
                 {/* cocktail map from api */}
-            <Container>
+            <Container className='my-5'>
 
-            {cocktails.length===0 ? <Spinner animation="border" /> : 
+            {cocktails.length===0 ? <Spinner className='d-block mx-auto' animation="border" /> : 
                 <Row xs={1} md={3} className="g-4">
                     {
                         cocktails.map(cocktail=> <Cocktails

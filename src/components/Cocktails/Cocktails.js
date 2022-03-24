@@ -6,7 +6,7 @@ const Cocktails = (props) => {
     return (
         <div>
     <Col>
-      <Card>
+      <Card className='p-2'>
         <Card.Img variant="top" src={strDrinkThumb} />
         <Card.Body>
           <Card.Title>{strCategory}</Card.Title>
